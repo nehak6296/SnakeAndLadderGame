@@ -7,7 +7,8 @@ namespace SnakeAndLadderGame
         public const int NO_PLAY = 0;
         public const int IS_LADDER = 1;
         public const int IS_SNAKE = 2;
-        public const int WINNING_POSITION = 100;
+        public const int WINNING_POSITION = 10;
+        
 
         Random random = new Random();
         public int DiceRoll()
@@ -23,6 +24,7 @@ namespace SnakeAndLadderGame
 
         static void Main(string[] args)
         {
+            int diceCount = 0;
             Program program = new Program();
                         
             int playerPosition = 0;
@@ -31,8 +33,10 @@ namespace SnakeAndLadderGame
             {
                 int diceRoll = program.DiceRoll();
                 Console.WriteLine("Dice" + diceRoll);
+                diceCount++;
                 int optionCheck = program.OptionCheck();
                 Console.WriteLine("Option " + optionCheck);
+
 
                 if (playerPosition + diceRoll > WINNING_POSITION)
                 {
@@ -52,15 +56,16 @@ namespace SnakeAndLadderGame
                 }
                 if ( playerPosition == WINNING_POSITION )
                 {
+                    Console.WriteLine("Number of times Dice Rolled : " + diceCount);
                     break;
                 }
                 else if (playerPosition < 0 )
                 {
                     playerPosition = 0;
                 }
-                
+                Console.WriteLine("Player Position :" + playerPosition);
             }
-            Console.WriteLine("Player Position :" + playerPosition);
+            Console.WriteLine("Final Player Position :" + playerPosition);
         }
     }
 }
