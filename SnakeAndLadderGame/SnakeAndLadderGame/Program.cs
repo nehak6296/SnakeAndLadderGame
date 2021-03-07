@@ -7,30 +7,56 @@ namespace SnakeAndLadderGame
         public const int NO_PLAY = 0;
         public const int IS_LADDER = 1;
         public const int IS_SNAKE = 2;
-        static void Main(string[]args)
-        {
-            int playerPosition =0 ;
-              
-            Random random = new Random();
-            int diceRoll = random.Next(1, 7);
-            Console.WriteLine("Dice Number :" + diceRoll);
+        public const int WINNING_POSITION = 100;
 
-            Random random1 = new Random();
-            int optionCheck = random1.Next(0, 3);
-            Console.WriteLine("Option " + optionCheck);
-            switch (optionCheck)
+        Random random = new Random();
+        public int DiceRoll()
+        {
+            int diceRoll = random.Next(1, 7);
+            return diceRoll;
+        }
+        public int OptionCheck()
+        {
+            int optionCheck = random.Next(0, 3);
+            return optionCheck;
+        }
+
+        static void Main(string[] args)
+        {
+            Program program = new Program();
+                        
+            int playerPosition = 0;
+                                   
+            while ( true )
             {
-                case NO_PLAY:
+                int diceRoll = program.DiceRoll();
+                Console.WriteLine("Dice" + diceRoll);
+                int optionCheck = program.OptionCheck();
+                Console.WriteLine("Option " + optionCheck);
+
+                switch (optionCheck)
+                {
+                    case NO_PLAY:
+                        playerPosition = 0;
+                        break;
+                    case IS_LADDER:
+                        playerPosition += diceRoll;
+                        break;
+                    case IS_SNAKE:
+                        playerPosition -= diceRoll;
+                        break;
+                }
+                if ( playerPosition == WINNING_POSITION )
+                {
+                    break;
+                }
+                else if (playerPosition < 0 )
+                {
                     playerPosition = 0;
-                    break;
-                case IS_LADDER:
-                   playerPosition += diceRoll;
-                    break;
-                case IS_SNAKE:
-                    playerPosition -= diceRoll;
-                    break;
+                }
+            
             }
-            Console.WriteLine("Player Position :" +playerPosition);
+            Console.WriteLine("Player Position :" + playerPosition);
         }
     }
 }
