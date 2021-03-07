@@ -34,10 +34,14 @@ namespace SnakeAndLadderGame
                 int optionCheck = program.OptionCheck();
                 Console.WriteLine("Option " + optionCheck);
 
+                if (playerPosition + diceRoll > WINNING_POSITION)
+                {
+                    optionCheck = NO_PLAY;
+                }
+
                 switch (optionCheck)
                 {
                     case NO_PLAY:
-                        playerPosition = 0;
                         break;
                     case IS_LADDER:
                         playerPosition += diceRoll;
@@ -54,7 +58,7 @@ namespace SnakeAndLadderGame
                 {
                     playerPosition = 0;
                 }
-            
+                
             }
             Console.WriteLine("Player Position :" + playerPosition);
         }
