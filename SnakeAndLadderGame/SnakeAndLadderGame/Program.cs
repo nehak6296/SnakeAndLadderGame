@@ -84,9 +84,9 @@ namespace SnakeAndLadderGame
                 {
                     playerTwoPosition = 0;
                 }
-               // Console.WriteLine("Player Position :" + playerPosition);
+               
             }
-           // Console.WriteLine("Final Player Position :" + playerPosition);
+           
         }
     }
 }
